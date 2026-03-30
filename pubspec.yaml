@@ -1,0 +1,17 @@
+name: van_khan
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flet:
+    sdk: flet
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
