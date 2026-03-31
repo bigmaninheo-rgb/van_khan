@@ -210,10 +210,10 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy các ngài Bản cảnh Thành hoàng chư vị Đại Vương.
 - Con kính lạy ngài Bản xứ Thần linh Thổ địa tôn thần.
 - Con kính lạy các ngài Ngũ phương, Ngũ Thổ, Long mạch, Tài thần, Bản gia Táo quân, cùng tất cả các vị thần linh cai quản trong xứ này.
-- Con kính lạy chư gia Cao Tằng Tổ Khảo, Cao Tằng Tổ Tỷ, Tiên linh nội ngoại họ {ten_be}
+- Con kính lạy chư gia Cao Tằng Tổ Khảo, Cao Tằng Tổ Tỷ, Tiên linh nội ngoại họ 
 
-Hôm nay là ngày 30 tháng Chạp năm {ten_be}
-Tín chủ (chúng) con là: {ten_be} Ngụ tại: {ten_be}
+Hôm nay là ngày 30 tháng Chạp năm 
+Tín chủ (chúng) con là:  Ngụ tại: 
 
 Trước án kính cẩn thưa trình: Đông tàn sắp hết, năm kiệt tháng cùng, xuân tiết gần kề, minh niên sắp tới.
 
@@ -289,15 +289,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

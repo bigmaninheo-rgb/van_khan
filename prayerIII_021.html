@@ -209,10 +209,10 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy Ngài Đương niên hành khiển, ngài Bản cảnh thành Hoàng, các ngài Thổ địa, Táo quân, Long mạch Tôn thần.
 - Con kính lạy các cụ Tổ Khảo, Tổ Tỷ, nội ngoại tiên linh.
 
-Hôm nay là ngày mồng 3 tháng Giêng năm {ten_be} (hoặc ngày khác nếu hóa vàng này khác)
+Hôm nay là ngày mồng 3 tháng Giêng năm  (hoặc ngày khác nếu hóa vàng này khác)
 
-Chúng con là: {ten_be} {ten_be} {ten_be}, tuổi {ten_be} {ten_be} {ten_be} {ten_be}
-Hiện cư ngụ tại: {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Chúng con là:   , tuổi    
+Hiện cư ngụ tại:      
 
 Thành tâm sửa biện hương hoa phẩm vật, phù tửu lễ nghi, cung bày trước án. Kính cẩn thưa trình: tiệc xuân đã mãn, Nguyên đán đã qua, nay xin thiêu hóa kim ngân, lễ tạ Tôn thần.
 
@@ -232,10 +232,10 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy Đức Nhật cung Thái Dương Thiên tử Tinh quân.
 - Con kính lạy Đức Thượng Thanh Bản mệnh Nguyên Thần Chân quân.
 
-Tín chủ (chúng) con là: {ten_be} ..tuổi {ten_be} {ten_be}
+Tín chủ (chúng) con là:  ..tuổi  
 
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich}, tín chủ con thành tâm sắm lệ, hương hoa trà quả, đốt nén tâm hương, thiết lập linh án tại (địa chỉ) {ten_be} Để làm lễ giải hạn sao {ten_be} chiếu mệnh, và hạn {ten_be}
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba, tín chủ con thành tâm sắm lệ, hương hoa trà quả, đốt nén tâm hương, thiết lập linh án tại (địa chỉ)  Để làm lễ giải hạn sao  chiếu mệnh, và hạn 
 
 Cúi mong chư vị chấp kỳ lễ bạc phù hộ độ trì giải trừ vận hạn; ban phúc, lộc, thọ cho con gặp mọi sự lành, tránh mọi sự dữ, gia nội bình yên, an khang thịnh vượng.
 
@@ -310,15 +310,21 @@ Phục duy cẩn cáo!
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

@@ -211,10 +211,10 @@ Hương tử chúng con thành tâm kính lạy Đức Hiệu Thiên chí tôn k
 - Đức đệ tam thủy phủ, Lân nữ công chúa.
 - Đức đệ tứ khâm sai Thánh mẫu, tứ vị chầu bà, năm tòa quan lớn, mười dinh các quan, mười hai Tiên cô, mười hai Thánh cậu, ngũ hỗ Đại tướng, Thanh Hoàng Bạch xà đại tướng.
 
-Tín chủ con là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-ngụ tại {dia_chi} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Tín chủ con là                                 
+ngụ tại                                 
 
-Cùng toàn thể gia đình đến nơi điện (phủ, đền) {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} chắp tay kính lễ khấu đầu vọng bái, lòng con thành khẩn, dạ con thiết tha, kính dâng lễ vật cúi xin các Ngài xót thương ủng hộ, khiến cho gia đình chúng con tiêu trừ tai nạn, điều lành thường tới, điềm dữ lánh xa, hết tai ương bệnh tật trong nhà, hưởng thịnh vượng an lành mãi mãi. Tài như nước đến, lộc tựa mây về, bốn mùa không hạn ách nào xâm, tám tiết có phúc lành tiếp ứng.
+Cùng toàn thể gia đình đến nơi điện (phủ, đền)        chắp tay kính lễ khấu đầu vọng bái, lòng con thành khẩn, dạ con thiết tha, kính dâng lễ vật cúi xin các Ngài xót thương ủng hộ, khiến cho gia đình chúng con tiêu trừ tai nạn, điều lành thường tới, điềm dữ lánh xa, hết tai ương bệnh tật trong nhà, hưởng thịnh vượng an lành mãi mãi. Tài như nước đến, lộc tựa mây về, bốn mùa không hạn ách nào xâm, tám tiết có phúc lành tiếp ứng.
 
 Lại xin: Thể đức hiếu sinh, rủ lòng cứu độ, khiến chúng con như ý sở cầu, cho hương tử lòng tâm sở nguyện.
 
@@ -289,15 +289,21 @@ Cẩn tấu.
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

@@ -209,9 +209,9 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy ngài Đông trù Tư mệnh Táo phủ Thần quân
 - Con kính lạy chư gia tiên Cao Tằng Tổ Khảo, Cao Tằng Tổ tỷ
 
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich}, tại tỉnh {ten_be} huyện {ten_be} xã {ten_be} thôn {ten_be}
-Hiển khảo (hoặc tỷ) {ten_be} mộ tiền
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba, tại tỉnh  huyện  xã  thôn 
+Hiển khảo (hoặc tỷ)  mộ tiền
 
 Than rằng: Thương xót cha (hay mẹ) xưa, vắng xa trần thế.
 Thác về, sống gửi, đất ba thước phải vùi chôn.
@@ -234,10 +234,10 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy Đức Hoàng Thiên Hậu Thổ chư vị Tôn thần.
 - Con kính lạy các ngài Long Mạch, Sơn Thần, Thổ địa, Thần linh cai quản trong xứ này.
 
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich}
-Tín chủ (chúng) con là: {ten_be} ngụ tại {dia_chi}
-Nhân hôm nay ngày Cải Cát (dời mộ, sửa mộ) của {ten_be} mộ phần tại {dia_chi}
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba
+Tín chủ (chúng) con là:  ngụ tại 
+Nhân hôm nay ngày Cải Cát (dời mộ, sửa mộ) của  mộ phần tại 
 Chúng con cùng toàn thể gia quyến tuân theo nghi lễ sắm sửa hương hoa lễ vật dâng lên án tọa Tôn thần cùng chư vị uy linh, kính cẩn tấu trình.
 
 Kính cáo Sơn Thần, Thổ Thần, Long Mạch và các vị Thần linh, cúi xin chứng minh, phù hộ cho toàn gia chúng con an ninh khang thái, vạn sự tốt lành.
@@ -313,15 +313,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

@@ -206,16 +206,16 @@ Nam mô a di Đà Phật! (3 lần)
 
 - Con kính lạy Hoàng thiên Hậu Thổ chư vị Tôn thần.
 - Con kính lạy ngài Bản cảnh Thành hoàng, ngài Bản xứ Thổ địa, ngài Bản gia Táo quân cùng chư vị Tôn thần.
-- Con kính lạy tiên họ {ten_be} chư vị Hương linh.
+- Con kính lạy tiên họ  chư vị Hương linh.
 
-Tín chủ (chúng) con là: {ten_be}
-Ngụ tại: {ten_be}
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich}
+Tín chủ (chúng) con là: 
+Ngụ tại: 
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba
 
-Tín chủ con có con trai (con gái) kết duyên cùng {ten_be}
-Con của ông bà {ten_be}
-Ngụ tại: {ten_be}
+Tín chủ con có con trai (con gái) kết duyên cùng 
+Con của ông bà 
+Ngụ tại: 
 
 Nay thủ tục hôn lễ đã thành. Xin kính dâng lễ vật, gọi là theo phong tục nghi lễ thành hôn và hợp cần, trước linh tọa Ngũ tự Gia thần chư vị Tôn linh, trước linh bài liệt vị gia tiên chư chân linh xin kính cẩn khấn cầu:
 
@@ -302,15 +302,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

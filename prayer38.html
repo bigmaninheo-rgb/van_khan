@@ -212,9 +212,9 @@ Hay dù chỉ thấy bức chân dung,
 Nhất tâm trì niệm hồng danh ấy,
 Thoát mọi hung tai, được cát tường".
 
-Hôm nay là ngày {ten_be} {ten_be} tháng {ten_be} {ten_be} năm {ten_be} {ten_be}
-Tín chủ con là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-ngụ tại {dia_chi} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay là ngày   tháng   năm  
+Tín chủ con là                   
+ngụ tại                                 
 
 Thành tâm đến trước Phật đài, nơi điện Đại bi, kính dâng phẩm vật, hương hoa kim ngân tịnh tài, ngũ thể đầu thành, nhất tâm kính lễ dưới tòa sen hồng.
 
@@ -291,15 +291,21 @@ Nam mô Quán Thế Âm Bồ-tát! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

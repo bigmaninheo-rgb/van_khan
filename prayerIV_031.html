@@ -209,9 +209,9 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy Thần Tài vị tiền
 - Con kính lạy các ngài Thần linh, Thổ địa cai quản trong xứ này.
 
-Tín chủ con là: {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich} (âm lịch).
+Tín chủ con là:        
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba (âm lịch).
 
 Tín chủ con thành tâm sửa biện, hương hoa, lễ vật, kim ngân, trà quả và các thứ cúng dâng, bầy ra trước án kính mời ngài Thần Tài tiền vị và chư vị tôn Thần.
 
@@ -288,15 +288,21 @@ Phục duy cẩn cáo!
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

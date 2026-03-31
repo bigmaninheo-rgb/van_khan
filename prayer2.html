@@ -208,10 +208,10 @@ Nam mô a di Đà Phật! (3 lần)
 - Con xin kính lạy đức Đông phương giáo chủ tiêu tai duyên thọ Dược Sư Lưu Ly Quang Vương Phật.
 - Con xin kính lạy đức Thiên thủ Thiên nhãn, Tầm Thanh cứu khổ cứu nạn Linh cảm Quán Thế Âm Bồ Tát.
 
-Tín chủ con là {ten_be}
-ngụ tại {dia_chi}
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich}
+Tín chủ con là 
+ngụ tại 
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba
 
 Tín chủ con thành tâm sắm sửa lễ vật, hương hoa, trà quả, kính dâng lên đức Đông phương giáo chủ tiêu tai duyên thọ Dược Sư Lưu Ly Quang Vương Phật, đức Thiên thủ Thiên nhãn, Tầm Thanh cứu khổ cứu nạn linh cảm Quán Thế Âm Bồ Tát.
 
@@ -297,15 +297,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

@@ -206,9 +206,9 @@ Nam mô a di Đà Phật! (3 lần)
 
 Đệ tử con thành tâm kính lạy Mười phương chư Phật, chư vị Bồ Tát, chư Hiền Thánh Tăng, Hộ pháp Thiện thân, Thiên Long Bát Bộ.
 
-Hôm nay là ngày {ten_be} {ten_be} tháng {ten_be} {ten_be} năm {ten_be} {ten_be}
-Tín chủ con là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-ngụ tại {dia_chi} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay là ngày   tháng   năm  
+Tín chủ con là                                 
+ngụ tại                                 
 
 Thành tâm dâng lễ bạc cùng sớ trạng (nếu viết sớ đặt trên mâm lễ vật) lên cửa Mười phương Thường trụ Tam Bảo.
 
@@ -219,7 +219,7 @@ Chúng con xin dốc lòng kính lễ.
 - Đức Thiên thủ, Thiên nhãn, Ngũ bách danh tầm thanh cứu khổ cứu nạn, linh cảm Quán Thế Âm Bồ Tát.
 - Kính lạy Đức Hộ Pháp thiên thần Chư Thiên Bồ Tát.
 
-Kính xin chư vị rủ lòng từ bi, phù hộ độ trì cho con, nguyện được {ten_be} {ten_be} {ten_be} {ten_be} (công danh, tài lộc, giải hạn, bình an{ten_be}).
+Kính xin chư vị rủ lòng từ bi, phù hộ độ trì cho con, nguyện được     (công danh, tài lộc, giải hạn, bình an).
 
 Nguyện xin chư vị, chấp kỳ lễ bạc, tâm thành (sớ trạng) chứng minh, chứng giám cho con được tai quan nạn khỏi, điều lành đem đến, điều dữ tiêu tan, phát lộc phát tài, gia trung mạnh khỏe, trên dưới thuận hòa an khang thịnh vượng.
 
@@ -296,15 +296,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

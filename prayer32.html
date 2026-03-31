@@ -206,10 +206,10 @@ Nam mô a di Đà Phật! (3 lần)
 
 - Con kính lạy Hoàng Thiên Hậu Thổ chư vị Tôn thần.
 
-Tín chủ chúng con đây là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} Tuổi {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-Hiện cư ngụ tại {dia_chi} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Tín chủ chúng con đây là      Tuổi          
+Hiện cư ngụ tại                       
 
-Hôm nay được biết là ngày {ten_be} {ten_be} {ten_be} tháng {ten_be} {ten_be} {ten_be} năm {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay được biết là ngày    tháng    năm      
 
 Tín chủ con xin thành tâm sắm lễ gồm hương hoa trà quả và đốt nén tâm hương dâng lên trước án thành tâm kính mời: Đức Hoàng thiên hậu Thổ cùng Chư vị Tôn Thần. Tiền Chủ thương xót tín chủ giáng lâm trước án và chứng giám lòng thành mà thụ hưởng lễ vật và phù trì tín chủ chúng con được toàn gia an ninh khang thái, vạn sự tốt lành. Chúng con lễ bạc tâm thành trước án kính lễ, cúi xin được phù hộ độ trì.
 
@@ -283,15 +283,21 @@ Phục duy cẩn cáo!
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

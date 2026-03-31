@@ -206,12 +206,12 @@ Nam mô a di Đà Phật! (3 lần)
 
 Kính lạy Đức Ông Tu Đạt Tôn Giả, Thập Bát Long Thần, Già Lam Chân Tế.
 
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich} {ten_be}
-Tín chủ con là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-ngụ tại {dia_chi} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba 
+Tín chủ con là                   
+ngụ tại                                 
 
-Cùng cả gia đình thân tới cửa chùa {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} trước điện Đức Ông, thành tâm kính lễ, (nếu có đang lễ vật thì khấn thêm "hiến dâng phẩm vật, kim ngân tịnh tài"), chúng con tâu lên Ngài Tu Đạt Tôn Giả từ cảnh trời cao soi xét.
+Cùng cả gia đình thân tới cửa chùa        trước điện Đức Ông, thành tâm kính lễ, (nếu có đang lễ vật thì khấn thêm "hiến dâng phẩm vật, kim ngân tịnh tài"), chúng con tâu lên Ngài Tu Đạt Tôn Giả từ cảnh trời cao soi xét.
 
 Chúng con kính tâu lên Ngài Già Lam Chân Tể cai quản trong nội tự cùng các Thánh Chúng trong cảnh chùa đây.
 
@@ -288,15 +288,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

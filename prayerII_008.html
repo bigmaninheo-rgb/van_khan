@@ -206,14 +206,14 @@ Nam mô a di Đà Phật! (3 lần)
 
 - Con lạy chín phương Trời, mười phương Chư Phật, Chư phật mười phương.
 
-Hôm nay là ngày {ten_be} tháng {ten_be} năm âm lịch tức ngày {ten_be} tháng {ten_be} năm dương lịch.
-Tại (địa chỉ): {ten_be}
+Hôm nay là ngày  tháng  năm âm lịch tức ngày  tháng  năm dương lịch.
+Tại (địa chỉ): 
 
-Con trai trưởng (hoặc cháu đích tôn) là {ten_be} vâng theo lệnh của mẫu thân (nếu là mẹ hoặc phụ mẫu nếu là cha), các chú bác, cùng anh rể, chị gái, các em trai gái dâu rể, con cháu nội ngoại kính lạy.
+Con trai trưởng (hoặc cháu đích tôn) là  vâng theo lệnh của mẫu thân (nếu là mẹ hoặc phụ mẫu nếu là cha), các chú bác, cùng anh rể, chị gái, các em trai gái dâu rể, con cháu nội ngoại kính lạy.
 
-Nay nhân ngày lễ Chung Thất (lễ Tốt Khốc) theo nghi lễ cổ truyền, có kính cẩn sắm các thứ lễ vật gồm: {ten_be}
+Nay nhân ngày lễ Chung Thất (lễ Tốt Khốc) theo nghi lễ cổ truyền, có kính cẩn sắm các thứ lễ vật gồm: 
 Kính dâng lễ mọn biểu lộ lòng thành.
-Trước linh vị của Hiển: {ten_be} chân linh xin ký
+Trước linh vị của Hiển:  chân linh xin ký
 
 Mấy lâu nay nhân cẩn trình thưa rằng:
 
@@ -226,7 +226,7 @@ Sống thời lại lai láng láng, hớn hở chừng nào!
 Thác thời kể tháng kể ngày, buồn tênh mọi lẽ!
 Ngày qua tháng lại, tính đến nay Chung Thất (hoặc Tốt Khốc) tới tuần;
 Lễ bạc tâm thành gọi là có nén nhang kính tế.
-Xin mời: Hiển {ten_be} Hiển {ten_be} Hiển {ten_be}
+Xin mời: Hiển  Hiển  Hiển 
 Cùng các bị Tiên linh, Tổ Bá, Tổ Thúc, Tổ Cô và các vong linh phụ thờ theo Tiên Tổ cùng về hâm hưởng
 
 Kính cáo: Liệt vị Tôn thần: Táo Quân, Thổ Công, Thánh sư, Tiến sĩ, Ngũ tự Gia thần cùng chứng giám và phù hộ cho toàn gia được một sự yên lành tốt đẹp.
@@ -301,15 +301,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;

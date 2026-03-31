@@ -208,9 +208,9 @@ Nam mô a di Đà Phật! (3 lần)
 
 Con lạy chín phương trời, mười phương Chư Phật, Chư Phật mười phương.
 
-Hôm nay là ngày {ten_be} tháng {ten_be} {ten_be} {ten_be} {ten_be} năm {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-Tại thôn {ten_be} {ten_be} {ten_be} xã {ten_be} {ten_be} {ten_be} huyện {ten_be} {ten_be} {ten_be} tỉnh {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-Tín chủ con là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay là ngày  tháng     năm     
+Tại thôn    xã    huyện    tỉnh     
+Tín chủ con là                                 
 
 Thành tâm săm lễ, quả cau lá trầu, hương hoa trà quả, thắp nén tâm hương dâng lên trước án tọa Đông trù Tư mệnh Táo phủ Thần quân.
 
@@ -238,12 +238,12 @@ Nam mô a di Đà Phật! (3 lần)
 
 Con lạy chín phương trời, mười phương Chư Phật, Chư Phật mười phương.
 
-Hôm nay là ngày {ten_be} tháng {ten_be} {ten_be} {ten_be} {ten_be} năm {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-Tại thôn {ten_be} {ten_be} {ten_be} xã {ten_be} {ten_be} {ten_be} huyện {ten_be} {ten_be} {ten_be} tỉnh {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
-Tín chủ con là {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay là ngày  tháng     năm      
+Tại thôn    xã    huyện    tỉnh      
+Tín chủ con là                                 
 
-Hôm nay là {ngay_thang}
-Ngày âm lịch: {ngay_am_lich}, tín chủ con cùng gia đình mới dọn đến đây là: (địa chỉ) {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be} {ten_be}
+Hôm nay là ngày 31/03/2026
+Ngày âm lịch: ngày 31/Ba, tín chủ con cùng gia đình mới dọn đến đây là: (địa chỉ)                                 
 
 Tín chủ con thiết lập linh sàng, sắp sửa lễ vật, bày trên bàn thờ, trước linh tọa kính trình các Cụ nội ngoại Gia tiên Tiền tổ. Nhờ hồng phúc Tổ tiên, ông bà cha mẹ, chúng con đã tạo lập được ngôi nhà mới, thiết lập thiết lập hương án thờ, kê giường nhóm lửa kính lễ khánh hạ. Nay chúng con làm lễ tân gia, cúi xin các cụ, ông bà cùng chư vị Hương linh nội ngoại thương xót con cháu, chứng giám lòng thành, thụ hưởng lễ vật, phù hộ độ trì cho chúng con, lộc lài vượng tiện gia đạo hưng long cháu con chữ bình an mạnh khỏe.
 
@@ -318,15 +318,21 @@ Nam mô a di Đà Phật! (3 lần)
         }
     </script>
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
                     let text = prayerText.textContent;
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 31/Ba');
+                    text = text.replace(/\{ten_be\}/g, '');
+                    text = text.replace(/\{dia_chi\}/g, '');
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
                     text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
-                    text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     prayerText.textContent = text;
