@@ -4,6 +4,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Vercel app variable
+app = handler
+
 def handler(request):
     """Vercel serverless function handler"""
     
