@@ -308,6 +308,9 @@ Nam mô a di Đà Phật! (3 lần)
         
 
 
+        
+
+
         <script>
             // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
@@ -315,12 +318,12 @@ Nam mô a di Đà Phật! (3 lần)
                 if (prayerText) {
                     let text = prayerText.textContent;
                     text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
-                    text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 11 tháng Hai năm Bính Thân');
+                    text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 13 tháng Hai năm Bính Ngọ');
                     text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
                     text = text.replace(/\[Địa chỉ\]/g, '');
                     text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
-                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 11 tháng Hai năm Bính Thân');
+                    text = text.replace(/\{ngay_am_lich\}/g, 'ngày 13 tháng Hai năm Bính Ngọ');
                     text = text.replace(/\{ten_be\}/g, '');
                     text = text.replace(/\{dia_chi\}/g, '');
                     prayerText.textContent = text;
