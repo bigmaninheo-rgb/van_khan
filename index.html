@@ -153,6 +153,7 @@
                 <div class="feature">
                     <h3>📚 46 Bài Văn Khấn</h3>
                     <p>Đầy đủ các bài văn khấn truyền thống Việt Nam</p>
+                    <a href="prayers.html" style="display: inline-block; margin-top: 10px; color: #8B0000; text-decoration: none; font-weight: bold;">📖 Xem tất cả bài →</a>
                 </div>
                 
                 <div class="feature">
@@ -222,6 +223,25 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js');
         }
+        
+        // Navigation và menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeBtn = document.querySelector('.close-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function() {
+                    mobileMenu.style.display = 'block';
+                });
+            }
+            
+            if (closeBtn && mobileMenu) {
+                closeBtn.addEventListener('click', function() {
+                    mobileMenu.style.display = 'none';
+                });
+            }
+        });
     </script>
 </body>
 </html>

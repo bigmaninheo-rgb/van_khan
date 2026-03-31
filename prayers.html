@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>46 Bài Văn Khấn - Văn Khấn Cổ Truyền</title>
+    <meta name="description" content="46 bài văn khấn đầy đủ cho các dịp lễ tết, cúng giỗ, thọ, cưới hỏi">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/apple-touch-icon-192.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B0000 0%, #FF6B6B 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #8B0000;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .content {
+            padding: 20px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+        
+        .prayer-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .prayer-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .prayer-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .prayer-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 8px;
+        }
+        
+        .prayer-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .install-section {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        
+        .install-btn {
+            background: #8B0000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        
+        .install-btn:hover {
+            background: #6B0000;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            .header {
+                padding: 10px 15px;
+            }
+            
+            .header h1 {
+                font-size: 16px;
+            }
+            
+            .content {
+                padding: 15px;
+                max-height: calc(100vh - 120px);
+            }
+            
+            .prayer-card {
+                padding: 15px;
+            }
+            
+            .prayer-title {
+                font-size: 16px;
+            }
+            
+            .prayer-description {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>46 Bài Văn Khấn</h1>
+            <a href="/" class="back-btn">← Trang chủ</a>
+        </div>
+        
+        <div class="content">
+            <div class="prayer-list">
+                <div class="prayer-card" onclick="openPrayer(1)">
+                    <div class="prayer-title">I. VĂN CÚNG LỄ MỪNG THỌ, CƯỚI HỎI, SINH DƯỠNG</div>
+                    <div class="prayer-description">Các bài văn khấn cho dịp mừng thọ, cưới hỏi, sinh dưỡng</div>
+                </div>
+                
+                <div class="prayer-card" onclick="openPrayer(2)">
+                    <div class="prayer-title">II. VĂN CÚNG LỄ TANG, GIỖ TỔ TIÊN</div>
+                    <div class="prayer-description">Các bài văn khấn cho dịp tang ma, giỗ tổ tiên</div>
+                </div>
+                
+                <div class="prayer-card" onclick="openPrayer(3)">
+                    <div class="prayer-title">III. VĂN CÚNG DỊP TẾT NGUYÊN ĐÁN</div>
+                    <div class="prayer-description">Các bài văn khấn cho dịp Tết Nguyên Đán</div>
+                </div>
+                
+                <div class="prayer-card" onclick="openPrayer(4)">
+                    <div class="prayer-title">IV. VĂN CÚNG NGÀY RẰM, MỒNG 1 VÀ CÁC NGÀY LỄ TẾT KHÁC</div>
+                    <div class="prayer-description">Các bài văn khấn cho ngày rằm, mùng 1 và các lễ tết khác</div>
+                </div>
+                
+                <div class="prayer-card" onclick="openPrayer(5)">
+                    <div class="prayer-title">V. VĂN CÚNG KHI ĐI LỄ CHÙA, ĐÌNH, MIẾU</div>
+                    <div class="prayer-description">Các bài văn khấn khi đi lễ chùa, đình, miếu</div>
+                </div>
+                
+                <div class="prayer-card" onclick="openPrayer(6)">
+                    <div class="prayer-title">VI. VĂN CÚNG CÁC DỊP KHÁC</div>
+                    <div class="prayer-description">Các bài văn khấn cho các dịp khác</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="install-section">
+            <p style="margin-bottom: 15px; color: #666;">📱 Cài đặt ứng dụng để dùng mọi lúc mọi nơi</p>
+            <button class="install-btn" onclick="installPWA()">
+                📱 Cài đặt ứng dụng
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        function openPrayer(id) {
+            // Hiện tại alert, có thể phát triển thành modal
+            alert(`Bài văn khấn số ${id} sẽ được hiển thị ở đây. Phiên bản hiện tại chỉ có demo.\n\nPhiên bản đầy đủ sẽ có:\n- Toàn bộ bài văn khấn\n- Tùy chỉnh thông tin cá nhân\n- Lưu và chia sẻ\n\nCài đặt ứng dụng để nhận thông báo cập nhật!`);
+        }
+        
+        // PWA Install
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+        
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted A2HS prompt');
+                    } else {
+                        console.log('User dismissed A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback cho iOS
+                if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                    alert('Để cài đặt: 1. Nhấn Share 2. Chọn "Add to Home Screen"');
+                } else {
+                    alert('Ứng dụng đã được tối ưu cho cài đặt PWA');
+                }
+            }
+        }
+        
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+</body>
+</html>
