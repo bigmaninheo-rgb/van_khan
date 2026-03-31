@@ -228,38 +228,7 @@ Chúng con lễ bạc tâm thành, trước án kính lễ, cúi xin được ph
 Nam mô a di Đà Phật! (3 lần)
                 </div>
                 
-                <div class="personalization-form">
-                    <h3>📝 Tùy chỉnh thông tin</h3>
-                    
-                    
-                    
-                    <div class="form-group">
-                        <label for="dia_chi">Địa chỉ (nếu cần):</label>
-                        <input type="text" id="dia_chi" placeholder="Nhập địa chỉ nhà (nếu cần)">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ngay_thang">Ngày tháng dương lịch:</label>
-                        <input type="text" id="ngay_thang" value="ngày 31/03/2026" readonly style="background: #f8f9fa;">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ngay_am_lich">Ngày tháng âm lịch:</label>
-                        <input type="text" id="ngay_am_lich" value="ngày 31/Ba" readonly style="background: #f8f9fa;">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="nam">Năm:</label>
-                        <input type="number" id="nam" value="2026" readonly style="background: #f8f9fa;">
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn" onclick="personalizePrayer()">📝 Cá nhân hóa bài văn</button>
-                        <button class="btn btn-secondary" onclick="copyPrayer()">📋 Sao chép bài văn</button>
-                        <button class="btn btn-secondary" onclick="sharePrayer()">🔗 Chia sẻ bài văn</button>
-                    </div>
                 </div>
-            </div>
         </div>
         
         <div class="install-section">
@@ -271,51 +240,12 @@ Nam mô a di Đà Phật! (3 lần)
     </div>
     
     <script>
-        function personalizePrayer() {
-            const tenBe = document.getElementById('ten_be').value;
-            const diaChi = document.getElementById('dia_chi').value;
-            const ngayThang = document.getElementById('ngay_thang').value;
-            const ngayAmLich = document.getElementById('ngay_am_lich').value;
-            const nam = document.getElementById('nam').value;
-            
-            
-            
-            // Thay thế placeholder trong bài văn
-            let prayerText = document.querySelector('.prayer-text').textContent;
-            prayerText = prayerText.replace(/\[Tên bé\/Tên gia chủ\]/g, tenBe);
-            prayerText = prayerText.replace(/\[Địa chỉ\]/g, diaChi);
-            prayerText = prayerText.replace(/\[Ngày tháng dương lịch\]/g, ngayThang);
-            prayerText = prayerText.replace(/\[Ngày tháng âm lịch\]/g, ngayAmLich);
-            prayerText = prayerText.replace(/\[Năm\]/g, nam);
-            
-            // Cập nhật nội dung
-            document.querySelector('.prayer-text').textContent = prayerText;
-            
-            // Lưu vào localStorage
-            localStorage.setItem('van_khan_settings', JSON.stringify({
-                        dia_chi: diaChi,
-                        ngay_thang: ngayThang,
-                        ngay_am_lich: ngayAmLich,
-                        nam: nam
-                    }));
+        ));
             
             alert('Đã cá nhân hóa bài văn khấn! Thông tin đã được lưu.');
         }
         
-        function copyPrayer() {
-            const prayerText = document.querySelector('.prayer-text').textContent;
-            navigator.clipboard.writeText(prayerText);
-            alert('Đã sao chép bài văn khấn!');
-        }
-        
-        function sharePrayer() {
-            const prayerText = document.querySelector('.prayer-text').textContent;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Bài Văn Khấn',
-                    text: prayerText
-                });
+        );
             } else {
                 // Fallback cho browsers không hỗ trợ Web Share API
                 const textArea = document.createElement('textarea');
@@ -328,23 +258,7 @@ Nam mô a di Đà Phật! (3 lần)
             }
         }
         
-        // Load settings từ localStorage
-        window.addEventListener('DOMContentLoaded', function() {
-            const settings = localStorage.getItem('van_khan_settings');
-            if (settings) {
-                const parsed = JSON.parse(settings);
-                
-                document.getElementById('dia_chi').value = parsed.dia_chi || '';
-                document.getElementById('ngay_thang').value = parsed.ngay_thang || '';
-                document.getElementById('ngay_am_lich').value = parsed.ngay_am_lich || '';
-                document.getElementById('nam').value = parsed.nam || '';
-                
-                // Cá nhân hóa bài văn
-                if (parsed.dia_chi || parsed.ngay_thang) {
-                    personalizePrayer();
-                }
-            }
-        });
+        
         
         // PWA Install
         let deferredPrompt;
@@ -380,5 +294,22 @@ Nam mô a di Đà Phật! (3 lần)
             navigator.serviceWorker.register('/sw.js');
         }
     </script>
+
+        <script>
+            // Tự động cập nhật ngày tháng vào bài văn khi load trang
+            document.addEventListener('DOMContentLoaded', function() {
+                const prayerText = document.querySelector('.prayer-text');
+                if (prayerText) {
+                    let text = prayerText.textContent;
+                    text = text.replace(/\[Ngày tháng dương lịch\]/g, 'ngày 31/03/2026');
+                    text = text.replace(/\[Ngày tháng âm lịch\]/g, 'ngày 31/Ba');
+                    text = text.replace(/\[Năm\]/g, '2026');
+                    text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '');
+                    text = text.replace(/\[Địa chỉ\]/g, '');
+                    prayerText.textContent = text;
+                }
+            });
+        </script>
+
 </body>
 </html>
