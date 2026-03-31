@@ -1,5 +1,1 @@
-flet
-pypdf
-fpdf2
-reportlab
-lunardate
+flet==0.83.1
