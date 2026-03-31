@@ -213,12 +213,12 @@ Nam mô Đại Bi Quan Thế Âm Bồ tát
 
 Hôm nay là ngày 31/03/2026
 Ngày âm lịch: 13/02/2026
-Vợ chồng con là  sinh được con (trai, gái) đặt tên là 
-Chúng con ngụ tại: 
+Vợ chồng con là ..... sinh được con ..... (trai, gái) đặt tên là .....
+Chúng con ngụ tại: .....
 
 Nay nhân ngày đầy năm (đầy cữ, đầy tháng) chúng con thành tâm sắm lễ vật dâng bầy lên trước án, trước bàn tọa chư vị Tôn thân kính cẩn tấu trình:
 
-Nhờ ơn thập phương chư Phật, chư vị Thánh hiền, chư vị Tiên Bà, các Đấng thần linh, Thổ công địa mạch, Thổ địa chính thần, Tiên tổ nội ngoại, cho con sinh ra cháu tên là  sinh ngày  được mẹ tròn con vuông.
+Nhờ ơn thập phương chư Phật, chư vị Thánh hiền, chư vị Tiên Bà, các Đấng thần linh, Thổ công địa mạch, Thổ địa chính thần, Tiên tổ nội ngoại, cho con sinh ra cháu tên là ..... sinh ngày ..... được mẹ tròn con vuông.
 
 Cúi xin chư vị tiên Bà, chư vị Tôn thần giáng lâm trước án, chứng giám lòng thành thụ hưởng lễ vật, phù hộ độ trì, che chở cho cháu được ăn mau chóng lớn, vô bệnh vô tật, vô tai, vô ương vô hạn, vô ách, phù hộ cho cháu bé được tươi đẹp, thông minh, sáng láng, thân mệnh bình yên, cường tráng, được hưởng vinh hoa phú quí. Gia đình con được phúc thọ an khang, nhân lành nảy nở, nghiệp dữ tiêu tan, bốn mùa không hạn cách nghĩ lo.
 
@@ -317,8 +317,10 @@ Nam mô a di Đà Phật! (3 lần)
         
 
 
+        
+
+
         <script>
-            // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
@@ -328,10 +330,10 @@ Nam mô a di Đà Phật! (3 lần)
                     text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '.....');
                     text = text.replace(/\[Địa chỉ\]/g, '.....');
-                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
-                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     text = text.replace(/\{ten_be\}/g, '.....');
                     text = text.replace(/\{dia_chi\}/g, '.....');
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     prayerText.textContent = text;
                 }
             });

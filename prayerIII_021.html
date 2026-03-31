@@ -234,7 +234,7 @@ Nam mô a di Đà Phật! (3 lần)
 
 Tín chủ (chúng) con là:  ..tuổi  
 
-Hôm nay là ngày 31/03/2026
+Hôm nay là ngày ngày 31/03/2026
 Ngày âm lịch: 13/02/2026, tín chủ con thành tâm sắm lệ, hương hoa trà quả, đốt nén tâm hương, thiết lập linh án tại (địa chỉ)  Để làm lễ giải hạn sao  chiếu mệnh, và hạn 
 
 Cúi mong chư vị chấp kỳ lễ bạc phù hộ độ trì giải trừ vận hạn; ban phúc, lộc, thọ cho con gặp mọi sự lành, tránh mọi sự dữ, gia nội bình yên, an khang thịnh vượng.
@@ -334,8 +334,10 @@ Phục duy cẩn cáo!
         
 
 
+        
+
+
         <script>
-            // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
@@ -345,10 +347,10 @@ Phục duy cẩn cáo!
                     text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '.....');
                     text = text.replace(/\[Địa chỉ\]/g, '.....');
-                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
-                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     text = text.replace(/\{ten_be\}/g, '.....');
                     text = text.replace(/\{dia_chi\}/g, '.....');
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     prayerText.textContent = text;
                 }
             });

@@ -234,7 +234,7 @@ Kính lạy: Các cụ Tổ khảo, Tổ tỷ, bá thúc huynh đệ, đường 
 
 Hôm nay là ngày mồng một Tết, tháng Giêng, năm   
 Chúng con là:     Tuổi    
-Hiện cư ngụ tại số nhà  Đường   Khu phố  Phường   Quận   Thành phố  
+Hiện cư ngụ tại .....số nhà  Đường   Khu phố  Phường   Quận   Thành phố  
 
 Nay theo tuế luật, âm dương vận hành tới tuần Nguyên đán, mồng một đầu xuân, mưa móc thấm nhuần, đón mừng năm mới. Con cháu tưởng niệm ân đức Tổ tiên như trời cao biển rộng, khôn đem tấc cỏ báo đáp ba xuân. Do đó, chúng con cùng toàn thể con cháu trong nhà sửa sang lễ vật, oản quả hương hoa kính dâng trước án.
 
@@ -334,8 +334,10 @@ Nguyện cho chúng con, tân niên khang thái, ngày đêm tốt lành, thời
         
 
 
+        
+
+
         <script>
-            // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
@@ -345,10 +347,10 @@ Nguyện cho chúng con, tân niên khang thái, ngày đêm tốt lành, thời
                     text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '.....');
                     text = text.replace(/\[Địa chỉ\]/g, '.....');
-                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
-                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     text = text.replace(/\{ten_be\}/g, '.....');
                     text = text.replace(/\{dia_chi\}/g, '.....');
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     prayerText.textContent = text;
                 }
             });

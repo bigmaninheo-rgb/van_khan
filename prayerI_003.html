@@ -207,8 +207,8 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy chín phương Trời, mười phương Chư Phật, Chư Phật mười phương.
 - Con lạy Thiên Quan - Linh thần nơi bản địa ở khu vực này.
 
-Đệ tử con là  sinh ngày 
-Cùng chồng/vợ  sinh ngày 
+Đệ tử con là  sinh ngày .....
+Cùng chồng/vợ  sinh ngày .....
 Ngụ tại: 
 
 Hôm nay nhân ngày lành tháng tốt, khí tiết năm  bầu trời cao vút tỏa sáng phúc lành. Vợ chồng con thành tâm thiết lễ cùng dâng sớ trạng kính lạy Trung thiên mệnh chủ, Bắc cự tử vi, Ngọc đế Thiên quân bệ hạ, giáng trần soi xét cho hạnh phúc gia đình con được có con trai/con gái. Hạnh phúc sum vầy truyền vào hậu thế.
@@ -317,8 +317,10 @@ Nam mô a di Đà Phật! (3 lần)
         
 
 
+        
+
+
         <script>
-            // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
@@ -328,10 +330,10 @@ Nam mô a di Đà Phật! (3 lần)
                     text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '.....');
                     text = text.replace(/\[Địa chỉ\]/g, '.....');
-                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
-                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     text = text.replace(/\{ten_be\}/g, '.....');
                     text = text.replace(/\{dia_chi\}/g, '.....');
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     prayerText.textContent = text;
                 }
             });

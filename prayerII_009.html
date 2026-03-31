@@ -209,7 +209,7 @@ Nam mô a di Đà Phật! (3 lần)
 - Con kính lạy ngài Đông trù Tư mệnh Táo phủ Thần quân.
 - Con kính lạy chư gia tiên Cao Tằng Tổ Khảo, Cao Tằng Tổ tỷ họ
 
-Hôm nay là ngày 31/03/2026
+Hôm nay là ngày ngày 31/03/2026
 Ngày âm lịch: 13/02/2026
 
 Con trai trưởng (hoặc cháu đích tôn) là  vâng theo lệnh của mẫu thân (nếu là mẹ hoặc phụ thân) và các chú bác, cùng với anh rể, chị gái và các em trai gái dâu rể, con cháu nội ngoại kính lạy.
@@ -349,8 +349,10 @@ Nam mô a di Đà Phật! (3 lần)
         
 
 
+        
+
+
         <script>
-            // Tự động cập nhật ngày tháng vào bài văn khi load trang
             document.addEventListener('DOMContentLoaded', function() {
                 const prayerText = document.querySelector('.prayer-text');
                 if (prayerText) {
@@ -360,10 +362,10 @@ Nam mô a di Đà Phật! (3 lần)
                     text = text.replace(/\[Năm\]/g, '2026');
                     text = text.replace(/\[Tên bé\/Tên gia chủ\]/g, '.....');
                     text = text.replace(/\[Địa chỉ\]/g, '.....');
-                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
-                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     text = text.replace(/\{ten_be\}/g, '.....');
                     text = text.replace(/\{dia_chi\}/g, '.....');
+                    text = text.replace(/\{ngay_thang\}/g, 'ngày 31/03/2026');
+                    text = text.replace(/\{ngay_am_lich\}/g, '13/02/2026');
                     prayerText.textContent = text;
                 }
             });
