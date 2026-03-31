@@ -6,7 +6,11 @@ echo.
 
 cd /d "C:\Users\Admin\Desktop\app văn khấn\van-khan"
 
+echo ✅ Folder hien tai: %CD%
+
 echo ✅ Folder root da san sang:
+echo    - main.py (entrypoint)
+echo    - pyproject.toml (config)
 echo    - index.html (trang chinh)
 echo    - python.js, flutter_bootstrap.js (scripts)
 echo    - core/logic.py (fix lunardate)
@@ -25,6 +29,9 @@ if errorlevel 1 (
 
 echo ✅ Git da san sang
 
+REM Fix git config
+git config --global --add safe.directory "%CD%"
+
 REM Nhap repository URL
 set /p repo_url="Nhap GitHub repository URL: "
 if "%repo_url%"=="" (
@@ -42,7 +49,7 @@ git config user.email "vankhan@example.com"
 
 echo.
 echo 📝 Dang commit...
-git commit -m "Fix script loading - move files to root"
+git commit -m "Fix Vercel entrypoint - use main.py instead of app.py"
 
 echo.
 echo 📤 Dang push len GitHub...
@@ -66,6 +73,6 @@ echo.
 echo 📱 Tiep theo:
 echo 1. Vercel se auto-deploy
 echo 2. Link: https://van-khan-xxx.vercel.app
-echo 3. Scripts se load tu root
+echo 3. Entrypoint: main.py
 echo.
 pause
