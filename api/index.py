@@ -11,24 +11,41 @@ def handler(request):
     """Vercel serverless function handler"""
     
     try:
+        # Log request for debugging
+        print(f"Request URL: {request.url}")
+        print(f"Request method: {getattr(request, 'method', 'GET')}")
+        
         # Return the main HTML file for root requests
         if request.url == '/' or request.url == '/index.html':
             index_path = ROOT / 'index.html'
-            with open(index_path, 'r', encoding='utf-8') as f:
-                content = f.read()
+            print(f"Serving index.html from: {index_path}")
             
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Content-Type': 'text/html; charset=utf-8',
-                    'Cache-Control': 'public, max-age=3600'
-                },
-                'body': content
-            }
+            if index_path.exists():
+                with open(index_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                return {
+                    'statusCode': 200,
+                    'headers': {
+                        'Content-Type': 'text/html; charset=utf-8',
+                        'Cache-Control': 'public, max-age=3600'
+                    },
+                    'body': content
+                }
+            else:
+                print(f"index.html not found at: {index_path}")
+                return {
+                    'statusCode': 404,
+                    'headers': {'Content-Type': 'text/plain'},
+                    'body': 'index.html not found'
+                }
         
         # Serve static files
         else:
             file_path = ROOT / request.url.lstrip('/')
+            print(f"Looking for file: {file_path}")
+            print(f"File exists: {file_path.exists()}")
+            
             if file_path.exists() and file_path.is_file():
                 with open(file_path, 'rb') as f:
                     content = f.read()
@@ -47,6 +64,8 @@ def handler(request):
                 else:
                     content_type = 'application/octet-stream'
                 
+                print(f"Serving file: {file_path} with type: {content_type}")
+                
                 return {
                     'statusCode': 200,
                     'headers': {
@@ -56,13 +75,15 @@ def handler(request):
                     'body': content
                 }
             else:
+                print(f"File not found: {file_path}")
                 return {
                     'statusCode': 404,
                     'headers': {'Content-Type': 'text/plain'},
-                    'body': 'File not found'
+                    'body': f'File not found: {request.url}'
                 }
     
     except Exception as e:
+        print(f"Error: {str(e)}")
         return {
             'statusCode': 500,
             'headers': {'Content-Type': 'text/plain'},
