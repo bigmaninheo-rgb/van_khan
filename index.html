@@ -46,6 +46,21 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold;
+            position: relative;
+        }
+        
+        .menu-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
         }
         
         .content {
@@ -79,11 +94,33 @@
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #8B0000;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .feature h3 {
             color: #8B0000;
             margin-bottom: 10px;
+        }
+        
+        .feature a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: rgba(139,0,0,0.1);
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .feature a:hover {
+            background: rgba(139,0,0,0.2);
         }
         
         .install-btn {
@@ -138,6 +175,7 @@
     <div class="container">
         <div class="header">
             Văn Khấn Cổ Truyền
+            <button class="menu-btn">☰</button>
         </div>
         
         <div class="content">
