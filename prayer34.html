@@ -221,31 +221,28 @@ Nam mô a di Đà Phật! (3 lần)
                 </div>
                 
                 <div class="personalization-form">
-                    <h3>📝 Tùy chỉnh thông tin cá nhân</h3>
+                    <h3>📝 Tùy chỉnh thông tin</h3>
+                    
+                    
                     
                     <div class="form-group">
-                        <label for="ten_be">Tên bé / Tên gia chủ:</label>
-                        <input type="text" id="ten_be" placeholder="Nhập tên bé hoặc tên gia chủ">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="dia_chi">Địa chỉ:</label>
-                        <input type="text" id="dia_chi" placeholder="Nhập địa chỉ nhà">
+                        <label for="dia_chi">Địa chỉ (nếu cần):</label>
+                        <input type="text" id="dia_chi" placeholder="Nhập địa chỉ nhà (nếu cần)">
                     </div>
                     
                     <div class="form-group">
                         <label for="ngay_thang">Ngày tháng dương lịch:</label>
-                        <input type="text" id="ngay_thang" placeholder="ngày 25/12/2025">
+                        <input type="text" id="ngay_thang" value="ngày 31/03/2026" readonly style="background: #f8f9fa;">
                     </div>
                     
                     <div class="form-group">
                         <label for="ngay_am_lich">Ngày tháng âm lịch:</label>
-                        <input type="text" id="ngay_am_lich" placeholder="ngày 01/11/Ất Dần">
+                        <input type="text" id="ngay_am_lich" value="ngày 31/Ba" readonly style="background: #f8f9fa;">
                     </div>
                     
                     <div class="form-group">
                         <label for="nam">Năm:</label>
-                        <input type="number" id="nam" placeholder="2025">
+                        <input type="number" id="nam" value="2026" readonly style="background: #f8f9fa;">
                     </div>
                     
                     <div style="text-align: center; margin-top: 20px;">
@@ -273,10 +270,7 @@ Nam mô a di Đà Phật! (3 lần)
             const ngayAmLich = document.getElementById('ngay_am_lich').value;
             const nam = document.getElementById('nam').value;
             
-            if (!tenBe) {
-                alert('Vui lòng nhập tên bé hoặc tên gia chủ');
-                return;
-            }
+            
             
             // Thay thế placeholder trong bài văn
             let prayerText = document.querySelector('.prayer-text').textContent;
@@ -291,12 +285,11 @@ Nam mô a di Đà Phật! (3 lần)
             
             // Lưu vào localStorage
             localStorage.setItem('van_khan_settings', JSON.stringify({
-                ten_be: tenBe,
-                dia_chi: diaChi,
-                ngay_thang: ngayThang,
-                ngay_am_lich: ngayAmLich,
-                nam: nam
-            }));
+                        dia_chi: diaChi,
+                        ngay_thang: ngayThang,
+                        ngay_am_lich: ngayAmLich,
+                        nam: nam
+                    }));
             
             alert('Đã cá nhân hóa bài văn khấn! Thông tin đã được lưu.');
         }
@@ -332,14 +325,14 @@ Nam mô a di Đà Phật! (3 lần)
             const settings = localStorage.getItem('van_khan_settings');
             if (settings) {
                 const parsed = JSON.parse(settings);
-                document.getElementById('ten_be').value = parsed.ten_be || '';
+                
                 document.getElementById('dia_chi').value = parsed.dia_chi || '';
                 document.getElementById('ngay_thang').value = parsed.ngay_thang || '';
                 document.getElementById('ngay_am_lich').value = parsed.ngay_am_lich || '';
                 document.getElementById('nam').value = parsed.nam || '';
                 
                 // Cá nhân hóa bài văn
-                if (parsed.ten_be) {
+                if (parsed.dia_chi || parsed.ngay_thang) {
                     personalizePrayer();
                 }
             }
