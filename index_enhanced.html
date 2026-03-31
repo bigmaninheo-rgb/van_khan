@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Văn Khấn - Ứng Dụng Văn Khấn Việt Nam</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#8B4513">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Văn Khấn">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-color: #333;
+            --bg-color: #FFF8DC;
+            --card-bg: #FFFAF0;
+            --border-color: #DEB887;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #D2691E;
+            --secondary-color: #8B4513;
+            --accent-color: #FFA500;
+            --text-color: #F5DEB3;
+            --bg-color: #2F1F1F;
+            --card-bg: #3E2723;
+            --border-color: #5D4037;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border-color);
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.2);
+        }
+
+        .btn {
+            padding: 15px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .theme-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .theme-toggle {
+            padding: 8px 15px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .font-size-controls {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .font-btn {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .font-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .prayers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .prayer-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prayer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .prayer-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .prayer-category {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .prayer-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .prayer-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        .btn-favorite {
+            background: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .btn-favorite.active {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .stats {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        .stats h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: var(--text-color);
+            margin-top: 5px;
+        }
+
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .offline-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #FF6B6B;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .prayers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🙏 Văn Khấn Việt Nam</h1>
+            <p>46 bài văn khấn truyền thống - Đầy đủ, Chính xác, Tiện lợi</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="🔍 Tìm kiếm bài khấn...">
+                    <button class="btn" onclick="searchPrayers()">Tìm kiếm</button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <select class="filter-select" id="categoryFilter" onchange="filterByCategory()">
+                    <option value="">📂 Tất cả nhóm</option>
+                    <option value="I">🎉 I. Lễ Mừng Thọ, Cưới Hỏi, Sinh Dưỡng</option>
+                    <option value="II">⚰️ II. Lễ Tang, Giỗ Tổ Tiên</option>
+                    <option value="III">🎊 III. Dịp Tết Nguyên Đán</option>
+                    <option value="IV">🌕 IV. Ngày Rằm, Mồng 1 và Lễ Tết Khác</option>
+                    <option value="V">🏛️ V. Khi Đi Lễ Chùa, Đình, Miếu</option>
+                    <option value="VI">🏠 VI. Dịp Làm Nhà, Chuyển Nhà, Tân Gia, Khai Trương</option>
+                </select>
+
+                <select class="filter-select" id="sortBy" onchange="sortPrayers()">
+                    <option value="default">📊 Sắp xếp mặc định</option>
+                    <option value="name">🔤 Theo tên</option>
+                    <option value="recent">⏰ Gần đây nhất</option>
+                    <option value="favorite">⭐ Yêu thích nhất</option>
+                </select>
+            </div>
+
+            <div class="theme-controls">
+                <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+                <div class="font-size-controls">
+                    <span>🔤 Cỡ chữ:</span>
+                    <button class="font-btn" onclick="changeFontSize(-1)">A-</button>
+                    <button class="font-btn" onclick="changeFontSize(1)">A+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <h3>📊 Thống kê sử dụng</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalPrayers">46</div>
+                    <div class="stat-label">Tổng bài khấn</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="viewCount">0</div>
+                    <div class="stat-label">Lần xem</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="favoriteCount">0</div>
+                    <div class="stat-label">Yêu thích</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="searchCount">0</div>
+                    <div class="stat-label">Lần tìm kiếm</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prayers-grid" id="prayersGrid">
+            <!-- Prayer cards will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <div class="install-prompt" id="installPrompt">
+        📱 Cài đặt ứng dụng để sử dụng offline!
+        <button class="btn-small" onclick="installPWA()">Cài đặt ngay</button>
+        <button class="btn-small" onclick="dismissInstall()">Để sau</button>
+    </div>
+
+    <div class="offline-indicator" id="offlineIndicator">
+        📵 Chế độ offline - Đã cache nội dung
+    </div>
+
+    <script>
+        // Data structure for prayers
+        const prayersData = [
+            {
+                id: 1,
+                title: "Văn khấn cúng đầy tháng cho bé (đầy năm, đầy cữ)",
+                category: "I",
+                categoryName: "I. VĂN CÚNG LỄ MỪNG THỌ, CƯỚI HỎI, SINH DƯỠNG",
+                description: "Văn khấn cúng đầy tháng cho bé gái, bé trai, đầy năm, đầy cữ",
+                url: "prayer1.html",
+                views: 0,
+                favorite: false,
+                lastAccessed: null
+            },
+            {
+                id: 2,
+                title: "Văn khấn cúng thôi nôi cho bé (từ 1-3 tuổi)",
+                category: "I",
+                categoryName: "I. VĂN CÚNG LỄ MỪNG THỌ, CƯỚI HỎI, SINH DƯỠNG",
+                description: "Văn khấn cúng thôi nôi cho bé từ 1-3 tuổi",
+                url: "prayer2.html",
+                views: 0,
+                favorite: false,
+                lastAccessed: null
+            },
+            // Add all 46 prayers here...
+            {
+                id: 46,
+                title: "Văn khấn cúng tân gia, khai trương",
+                category: "VI",
+                categoryName: "VI. VĂN CÚNG DỊP LÀM NHÀ, CHUYỂN NHÀ, TÂN GIA, KHAI TRƯƠNG",
+                description: "Văn khấn cúng tân gia, khai trương nhà mới, cửa hàng mới",
+                url: "prayer46.html",
+                views: 0,
+                favorite: false,
+                lastAccessed: null
+            }
+        ];
+
+        // Initialize app
+        let currentPrayers = [...prayersData];
+        let deferredPrompt = null;
+
+        // Load user preferences
+        function loadUserPreferences() {
+            const theme = localStorage.getItem('theme') || 'light';
+            const fontSize = localStorage.getItem('fontSize') || '16';
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const viewStats = JSON.parse(localStorage.getItem('viewStats') || '{}');
+
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.style.fontSize = fontSize + 'px';
+            
+            // Update favorites
+            prayersData.forEach(prayer => {
+                prayer.favorite = favorites.includes(prayer.id);
+                prayer.views = viewStats[prayer.id] || 0;
+            });
+
+            updateStats();
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update button text
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = newTheme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+
+        // Font size control
+        function changeFontSize(delta) {
+            const currentSize = parseInt(document.documentElement.style.fontSize) || 16;
+            const newSize = Math.max(12, Math.min(24, currentSize + delta));
+            
+            document.documentElement.style.fontSize = newSize + 'px';
+            localStorage.setItem('fontSize', newSize);
+        }
+
+        // Search functionality
+        function searchPrayers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                currentPrayers = [...prayersData];
+            } else {
+                currentPrayers = prayersData.filter(prayer => 
+                    prayer.title.toLowerCase().includes(searchTerm) ||
+                    prayer.description.toLowerCase().includes(searchTerm) ||
+                    prayer.categoryName.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Update search count
+            const searchCount = parseInt(localStorage.getItem('searchCount') || '0') + 1;
+            localStorage.setItem('searchCount', searchCount);
+            document.getElementById('searchCount').textContent = searchCount;
+
+            renderPrayers();
+        }
+
+        // Filter by category
+        function filterByCategory() {
+            const category = document.getElementById('categoryFilter').value;
+            
+            if (!category) {
+                currentPrayers = [...prayersData];
+            } else {
+                currentPrayers = prayersData.filter(prayer => prayer.category === category);
+            }
+
+            renderPrayers();
+        }
+
+        // Sort prayers
+        function sortPrayers() {
+            const sortBy = document.getElementById('sortBy').value;
+            
+            switch(sortBy) {
+                case 'name':
+                    currentPrayers.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'recent':
+                    currentPrayers.sort((a, b) => {
+                        if (!a.lastAccessed) return 1;
+                        if (!b.lastAccessed) return -1;
+                        return new Date(b.lastAccessed) - new Date(a.lastAccessed);
+                    });
+                    break;
+                case 'favorite':
+                    currentPrayers.sort((a, b) => b.favorite - a.favorite);
+                    break;
+                default:
+                    currentPrayers.sort((a, b) => a.id - b.id);
+            }
+
+            renderPrayers();
+        }
+
+        // Toggle favorite
+        function toggleFavorite(prayerId) {
+            const prayer = prayersData.find(p => p.id === prayerId);
+            prayer.favorite = !prayer.favorite;
+            
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            if (prayer.favorite) {
+                favorites.push(prayerId);
+            } else {
+                const index = favorites.indexOf(prayerId);
+                if (index > -1) favorites.splice(index, 1);
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateStats();
+            renderPrayers();
+        }
+
+        // Update statistics
+        function updateStats() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const viewStats = JSON.parse(localStorage.getItem('viewStats') || '{}');
+            const searchCount = localStorage.getItem('searchCount') || '0';
+            
+            document.getElementById('favoriteCount').textContent = favorites.length;
+            document.getElementById('searchCount').textContent = searchCount;
+            
+            const totalViews = Object.values(viewStats).reduce((sum, count) => sum + count, 0);
+            document.getElementById('viewCount').textContent = totalViews;
+        }
+
+        // Render prayers
+        function renderPrayers() {
+            const grid = document.getElementById('prayersGrid');
+            grid.innerHTML = '';
+
+            currentPrayers.forEach(prayer => {
+                const card = document.createElement('div');
+                card.className = 'prayer-card';
+                card.innerHTML = `
+                    <div class="prayer-category">${prayer.categoryName}</div>
+                    <div class="prayer-title">${prayer.title}</div>
+                    <div class="prayer-description">${prayer.description}</div>
+                    <div class="prayer-actions">
+                        <button class="btn btn-small" onclick="openPrayer(${prayer.id})">📖 Đọc bài</button>
+                        <button class="btn btn-small btn-favorite ${prayer.favorite ? 'active' : ''}" onclick="toggleFavorite(${prayer.id})">
+                            ${prayer.favorite ? '⭐ Đã thích' : '☆ Yêu thích'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Open prayer
+        function openPrayer(prayerId) {
+            const prayer = prayersData.find(p => p.id === prayerId);
+            
+            // Update view statistics
+            prayer.views++;
+            prayer.lastAccessed = new Date().toISOString();
+            
+            const viewStats = JSON.parse(localStorage.getItem('viewStats') || '{}');
+            viewStats[prayerId] = (viewStats[prayerId] || 0) + 1;
+            localStorage.setItem('viewStats', JSON.stringify(viewStats));
+            
+            updateStats();
+            
+            // Open prayer page
+            window.open(prayer.url, '_blank');
+        }
+
+        // PWA Installation
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').style.display = 'block';
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                    document.getElementById('installPrompt').style.display = 'none';
+                });
+            }
+        }
+
+        function dismissInstall() {
+            document.getElementById('installPrompt').style.display = 'none';
+        }
+
+        // Offline detection
+        window.addEventListener('online', () => {
+            document.getElementById('offlineIndicator').style.display = 'none';
+        });
+
+        window.addEventListener('offline', () => {
+            document.getElementById('offlineIndicator').style.display = 'block';
+        });
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchPrayers();
+            }
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserPreferences();
+            renderPrayers();
+            
+            // Register service worker for offline support
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            }
+        });
+    </script>
+</body>
+</html>

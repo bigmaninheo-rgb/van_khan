@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Văn Khấn - Lịch Âm Dương & Nhắc nhở</title>
+    
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --text-color: #333;
+            --bg-color: #FFF8DC;
+            --card-bg: #FFFAF0;
+            --border-color: #DEB887;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --lunar-bg: #2C3E50;
+            --lunar-text: #ECF0F1;
+            --solar-bg: #3498DB;
+            --solar-text: #FFFFFF;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #D2691E;
+            --secondary-color: #8B4513;
+            --accent-color: #FFA500;
+            --text-color: #F5DEB3;
+            --bg-color: #2F1F1F;
+            --card-bg: #3E2723;
+            --border-color: #5D4037;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .calendar-section {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .calendar-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px 5px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: var(--bg-color);
+        }
+
+        .calendar-day:hover {
+            background: var(--accent-color);
+            color: var(--text-color);
+            transform: scale(1.05);
+        }
+
+        .calendar-day.today {
+            background: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        .calendar-day.has-event {
+            border: 2px solid var(--accent-color);
+        }
+
+        .solar-date {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .lunar-date {
+            font-size: 0.8em;
+            color: var(--secondary-color);
+            margin-top: 2px;
+        }
+
+        .reminders-section {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .reminders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .reminders-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .add-reminder-btn {
+            padding: 10px 20px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .add-reminder-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .reminder-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .reminder-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .reminder-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .reminder-info {
+            flex: 1;
+        }
+
+        .reminder-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .reminder-date {
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
+
+        .reminder-type {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .type-le {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .type-tet {
+            background: #4ECDC4;
+            color: white;
+        }
+
+        .type-gio {
+            background: #45B7D1;
+            color: white;
+        }
+
+        .type-custom {
+            background: #96CEB4;
+            color: white;
+        }
+
+        .reminder-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .delete-btn {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--text-color);
+        }
+
+        .theme-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .theme-toggle {
+            padding: 10px 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .calendar-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .calendar-grid {
+                gap: 2px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📅 Lịch Văn Khấn</h1>
+            <p>Lịch Âm Dương & Nhắc nhở các ngày lễ, giỗ, Tết</p>
+        </header>
+
+        <div class="calendar-container">
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <div class="calendar-title">🌞 Lịch Dương</div>
+                    <div class="calendar-nav">
+                        <button class="nav-btn" onclick="changeMonth(-1)">◀</button>
+                        <span id="currentMonth">Tháng 3, 2026</span>
+                        <button class="nav-btn" onclick="changeMonth(1)">▶</button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="solarCalendar">
+                    <!-- Calendar days will be generated here -->
+                </div>
+            </div>
+
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <div class="calendar-title">🌙 Lịch Âm</div>
+                    <div class="calendar-nav">
+                        <button class="nav-btn" onclick="changeLunarMonth(-1)">◀</button>
+                        <span id="currentLunarMonth">Tháng 2, Bính Ngọ</span>
+                        <button class="nav-btn" onclick="changeLunarMonth(1)">▶</button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="lunarCalendar">
+                    <!-- Lunar calendar days will be generated here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="reminders-section">
+            <div class="reminders-header">
+                <div class="reminders-title">⏰ Nhắc nhở</div>
+                <button class="add-reminder-btn" onclick="openReminderModal()">+ Thêm nhắc nhở</button>
+            </div>
+            <div class="reminder-list" id="reminderList">
+                <!-- Reminders will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="theme-controls">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+    </div>
+
+    <!-- Reminder Modal -->
+    <div class="modal" id="reminderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Thêm Nhắc nhở</div>
+                <button class="close-btn" onclick="closeReminderModal()">×</button>
+            </div>
+            <form id="reminderForm">
+                <div class="form-group">
+                    <label class="form-label">Tiêu đề</label>
+                    <input type="text" class="form-input" id="reminderTitle" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Loại</label>
+                    <select class="form-select" id="reminderType">
+                        <option value="le">🎉 Ngày lễ</option>
+                        <option value="tet">🎊 Tết Nguyên Đán</option>
+                        <option value="gio">⚰️ Giỗ chạp</option>
+                        <option value="custom">📝 Tùy chỉnh</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ngày (dương lịch)</label>
+                    <input type="date" class="form-input" id="reminderDate" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mô tả</label>
+                    <textarea class="form-textarea" id="reminderDescription"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeReminderModal()">Hủy</button>
+                    <button type="submit" class="btn">Lưu nhắc nhở</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Calendar and Reminder System
+        let currentDate = new Date();
+        let currentLunarDate = getLunarDate(currentDate);
+        let reminders = JSON.parse(localStorage.getItem('reminders') || '[]');
+
+        // Vietnamese lunar calendar data (simplified)
+        const lunarMonths = ['Giêng', 'Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy', 'Tám', 'Chín', 'Mười', 'Mười Một', 'Chạp'];
+        const lunarYears = {
+            2024: "Giáp Thìn",
+            2025: "Ất Tỵ",
+            2026: "Bính Ngọ",
+            2027: "Đinh Mùi",
+            2028: "Mậu Thân",
+            2029: "Kỷ Dậu",
+            2030: "Canh Tuất"
+        };
+
+        // Special days data
+        const specialDays = [
+            { date: '2026-01-01', type: 'tet', name: 'Tết Nguyên Đán' },
+            { date: '2026-01-15', type: 'tet', name: 'Tết Nguyên Tiêu' },
+            { date: '2026-02-14', type: 'le', name: 'Valentine' },
+            { date: '2026-03-08', type: 'le', name: 'Quốc tế Phụ nữ' },
+            { date: '2026-04-01', type: 'le', name: 'Cá tháng Tư' },
+            { date: '2026-05-01', type: 'le', name: 'Quốc tế Lao động' },
+            { date: '2026-06-01', type: 'le', name: 'Quốc tế Thiếu nhi' },
+            { date: '2026-09-02', type: 'le', name: 'Quốc khánh' },
+            { date: '2026-10-20', type: 'le', name: 'Phụ nữ Việt Nam' },
+            { date: '2026-12-25', type: 'le', name: 'Giáng sinh' }
+        ];
+
+        function getLunarDate(date) {
+            // Simplified lunar calendar calculation
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            
+            // Simple offset calculation (not 100% accurate but good for demo)
+            let lunarDay = day - 18;
+            let lunarMonth = month - 1;
+            
+            if (lunarDay <= 0) {
+                lunarDay += 30;
+                lunarMonth -= 1;
+            }
+            
+            if (lunarMonth <= 0) {
+                lunarMonth += 12;
+            }
+            
+            return {
+                day: Math.max(1, lunarDay),
+                month: lunarMonth,
+                year: year,
+                monthName: lunarMonths[lunarMonth - 1] || 'Giêng',
+                yearName: lunarYears[year] || `${year}`
+            };
+        }
+
+        function generateSolarCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            const calendarGrid = document.getElementById('solarCalendar');
+            calendarGrid.innerHTML = '';
+            
+            // Day headers
+            const dayHeaders = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+            dayHeaders.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                calendarGrid.appendChild(header);
+            });
+            
+            // Empty cells for first week
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Days of month
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                
+                const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const isToday = today.getFullYear() === year && 
+                               today.getMonth() === month && 
+                               today.getDate() === day;
+                
+                if (isToday) {
+                    dayElement.classList.add('today');
+                }
+                
+                // Check for special days
+                const specialDay = specialDays.find(d => d.date === currentDateStr);
+                if (specialDay) {
+                    dayElement.classList.add('has-event');
+                }
+                
+                dayElement.innerHTML = `<div class="solar-date">${day}</div>`;
+                
+                if (specialDay) {
+                    dayElement.innerHTML += `<div style="font-size: 0.7em; color: var(--accent-color);">${specialDay.name}</div>`;
+                }
+                
+                dayElement.onclick = () => selectDate(year, month, day);
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Update month display
+            const monthNames = ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 
+                              'Tháng Bảy', 'Tháng Tám', 'Tháng Chín', 'Tháng Mười', 'Tháng Mười Một', 'Tháng Mười Hai'];
+            document.getElementById('currentMonth').textContent = `${monthNames[month]}, ${year}`;
+        }
+
+        function generateLunarCalendar() {
+            const lunarDate = getLunarDate(currentDate);
+            const calendarGrid = document.getElementById('lunarCalendar');
+            calendarGrid.innerHTML = '';
+            
+            // Day headers
+            const dayHeaders = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+            dayHeaders.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                calendarGrid.appendChild(header);
+            });
+            
+            // Generate lunar calendar (simplified)
+            const daysInLunarMonth = 30; // Most lunar months have 30 days
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+            
+            // Empty cells for first week
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Days of lunar month
+            for (let day = 1; day <= daysInLunarMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                
+                dayElement.innerHTML = `
+                    <div class="lunar-date">${day}</div>
+                    <div class="solar-date" style="font-size: 0.7em; opacity: 0.7">${day + 18}</div>
+                `;
+                
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Update lunar month display
+            document.getElementById('currentLunarMonth').textContent = `Tháng ${lunarDate.monthName}, ${lunarDate.yearName}`;
+        }
+
+        function changeMonth(direction) {
+            currentDate.setMonth(currentDate.getMonth() + direction);
+            currentLunarDate = getLunarDate(currentDate);
+            generateSolarCalendar();
+            generateLunarCalendar();
+        }
+
+        function changeLunarMonth(direction) {
+            currentDate.setMonth(currentDate.getMonth() + direction);
+            currentLunarDate = getLunarDate(currentDate);
+            generateSolarCalendar();
+            generateLunarCalendar();
+        }
+
+        function selectDate(year, month, day) {
+            // Handle date selection
+            console.log(`Selected date: ${day}/${month + 1}/${year}`);
+        }
+
+        function loadReminders() {
+            const reminderList = document.getElementById('reminderList');
+            reminderList.innerHTML = '';
+            
+            if (reminders.length === 0) {
+                reminderList.innerHTML = '<p style="text-align: center; color: var(--text-color);">Chưa có nhắc nhở nào</p>';
+                return;
+            }
+            
+            reminders.sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            reminders.forEach(reminder => {
+                const reminderItem = document.createElement('div');
+                reminderItem.className = 'reminder-item';
+                
+                const typeClass = `type-${reminder.type}`;
+                const typeText = {
+                    'le': 'Lễ',
+                    'tet': 'Tết',
+                    'gio': 'Giỗ',
+                    'custom': 'Tùy chỉnh'
+                }[reminder.type] || 'Tùy chỉnh';
+                
+                reminderItem.innerHTML = `
+                    <div class="reminder-info">
+                        <div class="reminder-title">${reminder.title}</div>
+                        <div class="reminder-date">${formatDate(reminder.date)}</div>
+                        <span class="reminder-type ${typeClass}">${typeText}</span>
+                    </div>
+                    <div class="reminder-actions">
+                        <button class="action-btn edit-btn" onclick="editReminder('${reminder.id}')">Sửa</button>
+                        <button class="action-btn delete-btn" onclick="deleteReminder('${reminder.id}')">Xóa</button>
+                    </div>
+                `;
+                
+                reminderList.appendChild(reminderItem);
+            });
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('vi-VN', options);
+        }
+
+        function openReminderModal() {
+            document.getElementById('reminderModal').style.display = 'flex';
+        }
+
+        function closeReminderModal() {
+            document.getElementById('reminderModal').style.display = 'none';
+            document.getElementById('reminderForm').reset();
+        }
+
+        function saveReminder() {
+            const title = document.getElementById('reminderTitle').value;
+            const type = document.getElementById('reminderType').value;
+            const date = document.getElementById('reminderDate').value;
+            const description = document.getElementById('reminderDescription').value;
+            
+            if (!title || !date) {
+                alert('Vui lòng nhập tiêu đề và ngày!');
+                return;
+            }
+            
+            const reminder = {
+                id: Date.now().toString(),
+                title,
+                type,
+                date,
+                description,
+                createdAt: new Date().toISOString()
+            };
+            
+            reminders.push(reminder);
+            localStorage.setItem('reminders', JSON.stringify(reminders));
+            
+            loadReminders();
+            closeReminderModal();
+            
+            // Schedule notification
+            scheduleNotification(reminder);
+        }
+
+        function editReminder(id) {
+            const reminder = reminders.find(r => r.id === id);
+            if (reminder) {
+                document.getElementById('reminderTitle').value = reminder.title;
+                document.getElementById('reminderType').value = reminder.type;
+                document.getElementById('reminderDate').value = reminder.date;
+                document.getElementById('reminderDescription').value = reminder.description;
+                
+                openReminderModal();
+            }
+        }
+
+        function deleteReminder(id) {
+            if (confirm('Bạn có chắc muốn xóa nhắc nhở này?')) {
+                reminders = reminders.filter(r => r.id !== id);
+                localStorage.setItem('reminders', JSON.stringify(reminders));
+                loadReminders();
+            }
+        }
+
+        function scheduleNotification(reminder) {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                const reminderDate = new Date(reminder.date);
+                const now = new Date();
+                const timeUntilReminder = reminderDate - now;
+                
+                if (timeUntilReminder > 0) {
+                    setTimeout(() => {
+                        new Notification('Nhắc nhở Văn Khấn', {
+                            body: `${reminder.title} - ${formatDate(reminder.date)}`,
+                            icon: '/icons/icon-192.png',
+                            badge: '/icons/icon-192.png',
+                            vibrate: [100, 50, 100]
+                        });
+                    }, timeUntilReminder);
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = newTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+        }
+
+        // Request notification permission
+        function requestNotificationPermission() {
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission().then(permission => {
+                    console.log('Notification permission:', permission);
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load theme
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+            
+            // Generate calendars
+            generateSolarCalendar();
+            generateLunarCalendar();
+            
+            // Load reminders
+            loadReminders();
+            
+            // Request notification permission
+            requestNotificationPermission();
+            
+            // Schedule existing reminders notifications
+            reminders.forEach(reminder => {
+                scheduleNotification(reminder);
+            });
+        });
+
+        // Form submission
+        document.getElementById('reminderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            saveReminder();
+        });
+
+        // Close modal on outside click
+        document.getElementById('reminderModal').addEventListener('click', (e) => {
+            if (e.target.id === 'reminderModal') {
+                closeReminderModal();
+            }
+        });
+    </script>
+</body>
+</html>

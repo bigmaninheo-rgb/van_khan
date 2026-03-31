@@ -1,23 +1,88 @@
 {
-  "name": "src",
-  "short_name": "src",
-  "start_url": ".",
+  "name": "Văn Khấn Việt Nam",
+  "short_name": "Văn Khấn",
+  "start_url": "/index_enhanced.html",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#0175C2",
-  "description": "Flet - the fastest way to build Flutter apps in Python",
-  "orientation": "natural",
+  "background_color": "#FFF8DC",
+  "theme_color": "#8B4513",
+  "description": "46 bài văn khấn truyền thống - Đầy đủ, Chính xác, Tiện lợi. PWA hỗ trợ offline và thông báo đẩy.",
+  "orientation": "portrait",
   "prefer_related_applications": false,
+  "scope": "/",
+  "lang": "vi",
+  "categories": ["lifestyle", "utilities", "education"],
+  "shortcuts": [
+    {
+      "name": "Tất cả bài khấn",
+      "short_name": "Tất cả",
+      "description": "Xem tất cả 46 bài văn khấn",
+      "url": "/prayers.html",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Tìm kiếm",
+      "short_name": "Tìm kiếm",
+      "description": "Tìm kiếm bài khấn theo từ khóa",
+      "url": "/index_enhanced.html#search",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshots/mobile-1.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
   "icons": [
+    {
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-384.png",
+      "sizes": "384x384",
       "type": "image/png"
     },
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icons/icon-maskable-192.png",
@@ -31,5 +96,9 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "related_applications": [],
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
 }
