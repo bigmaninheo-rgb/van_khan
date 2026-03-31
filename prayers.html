@@ -170,32 +170,32 @@
         
         <div class="content">
             <div class="prayer-list">
-                <div class="prayer-card" onclick="openPrayer(1)">
+                <div class="prayer-card" onclick="openPrayer(1, 'prayer1.html')">
                     <div class="prayer-title">I. VĂN CÚNG LỄ MỪNG THỌ, CƯỚI HỎI, SINH DƯỠNG</div>
                     <div class="prayer-description">Các bài văn khấn cho dịp mừng thọ, cưới hỏi, sinh dưỡng</div>
                 </div>
                 
-                <div class="prayer-card" onclick="openPrayer(2)">
+                <div class="prayer-card" onclick="openPrayer(2, 'prayer2.html')">
                     <div class="prayer-title">II. VĂN CÚNG LỄ TANG, GIỖ TỔ TIÊN</div>
                     <div class="prayer-description">Các bài văn khấn cho dịp tang ma, giỗ tổ tiên</div>
                 </div>
                 
-                <div class="prayer-card" onclick="openPrayer(3)">
+                <div class="prayer-card" onclick="openPrayer(3, 'prayer3.html')">
                     <div class="prayer-title">III. VĂN CÚNG DỊP TẾT NGUYÊN ĐÁN</div>
                     <div class="prayer-description">Các bài văn khấn cho dịp Tết Nguyên Đán</div>
                 </div>
                 
-                <div class="prayer-card" onclick="openPrayer(4)">
+                <div class="prayer-card" onclick="openPrayer(4, 'prayer4.html')">
                     <div class="prayer-title">IV. VĂN CÚNG NGÀY RẰM, MỒNG 1 VÀ CÁC NGÀY LỄ TẾT KHÁC</div>
                     <div class="prayer-description">Các bài văn khấn cho ngày rằm, mùng 1 và các lễ tết khác</div>
                 </div>
                 
-                <div class="prayer-card" onclick="openPrayer(5)">
+                <div class="prayer-card" onclick="openPrayer(5, 'prayer5.html')">
                     <div class="prayer-title">V. VĂN CÚNG KHI ĐI LỄ CHÙA, ĐÌNH, MIẾU</div>
                     <div class="prayer-description">Các bài văn khấn khi đi lễ chùa, đình, miếu</div>
                 </div>
                 
-                <div class="prayer-card" onclick="openPrayer(6)">
+                <div class="prayer-card" onclick="openPrayer(6, 'prayer6.html')">
                     <div class="prayer-title">VI. VĂN CÚNG CÁC DỊP KHÁC</div>
                     <div class="prayer-description">Các bài văn khấn cho các dịp khác</div>
                 </div>
@@ -211,9 +211,9 @@
     </div>
     
     <script>
-        function openPrayer(id) {
-            // Hiện tại alert, có thể phát triển thành modal
-            alert(`Bài văn khấn số ${id} sẽ được hiển thị ở đây. Phiên bản hiện tại chỉ có demo.\n\nPhiên bản đầy đủ sẽ có:\n- Toàn bộ bài văn khấn\n- Tùy chỉnh thông tin cá nhân\n- Lưu và chia sẻ\n\nCài đặt ứng dụng để nhận thông báo cập nhật!`);
+        function openPrayer(id, url) {
+            // Mở trang chi tiết bài văn khấn
+            window.location.href = url;
         }
         
         // PWA Install
